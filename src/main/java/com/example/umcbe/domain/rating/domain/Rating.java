@@ -4,6 +4,7 @@ import com.example.umcbe.domain.member.domain.Member;
 import com.example.umcbe.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -30,4 +31,17 @@ public class Rating extends BaseTimeEntity {
 
     @Column(columnDefinition = "TEXT")
     private String comment;
+
+    @Builder
+    public Rating(Member member, Long movieId, Integer score, String comment) {
+        this.member = member;
+        this.movieId = movieId;
+        this.score = score;
+        this.comment = comment;
+    }
+
+    public void update(Integer score, String comment) {
+        this.score = score;
+        this.comment = comment;
+    }
 }
