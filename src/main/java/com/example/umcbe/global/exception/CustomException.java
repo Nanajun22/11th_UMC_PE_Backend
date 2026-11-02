@@ -4,9 +4,9 @@ import com.example.umcbe.global.code.BaseCode;
 import lombok.Getter;
 
 @Getter
-public class CustomExeption extends RuntimeException {
+public class CustomException extends RuntimeException {
     private BaseCode baseCode;
-    public CustomExeption(BaseCode basecode) {
+    public CustomException(BaseCode basecode) {
         super(basecode.getMessage());
     }
 }
