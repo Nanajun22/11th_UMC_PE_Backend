@@ -1,4 +1,7 @@
 package com.example.umcbe.domain.member.dto;
 
-public class MemberResponse {
-}
+public record MemberResponse(
+        Long memberId,
+        String email,
+        String nickname
+) {}

@@ -1,9 +1,15 @@
 package com.example.umcbe.domain.member.controller;
 
 import com.example.umcbe.domain.member.dto.EmailCheckResponse;
+import com.example.umcbe.domain.member.dto.MemberResponse;
 import com.example.umcbe.domain.member.dto.NicknameCheckResponse;
+import com.example.umcbe.domain.member.dto.SignUpRequest;
 import com.example.umcbe.domain.member.service.MemberService;
+import com.example.umcbe.global.code.SuccessCode;
+import com.example.umcbe.global.response.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,5 +27,13 @@ public class MemberController {
     @GetMapping("/email/{email}")
     public EmailCheckResponse checkEmail(@PathVariable String email) {
         return memberService.checkEmail(email);
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse<MemberResponse>> signUp(
+            @Valid @RequestBody SignUpRequest request
+    ) {
+        MemberResponse response = memberService.signUp(request);
+        return ApiResponse.success(SuccessCode.COMMON_CREATED,response);
     }
 }
