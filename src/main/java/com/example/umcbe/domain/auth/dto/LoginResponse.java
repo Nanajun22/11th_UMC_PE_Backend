@@ -1,4 +1,8 @@
 package com.example.umcbe.domain.auth.dto;
 
-public class LoginResponse {
+
+public record LoginResponse(
+        String nickname,
+        String accessToken
+) {
 }
