@@ -1,10 +1,7 @@
 package com.example.umcbe.domain.member.service;
 
 import com.example.umcbe.domain.member.domain.Member;
-import com.example.umcbe.domain.member.dto.EmailCheckResponse;
-import com.example.umcbe.domain.member.dto.MemberResponse;
-import com.example.umcbe.domain.member.dto.NicknameCheckResponse;
-import com.example.umcbe.domain.member.dto.SignUpRequest;
+import com.example.umcbe.domain.member.dto.*;
 import com.example.umcbe.domain.member.error.MemberErrorCode;
 import com.example.umcbe.domain.member.repository.MemberRepository;
 import com.example.umcbe.global.exception.CustomException;
@@ -49,5 +46,26 @@ public class MemberService {
 
         Member savedMember = memberRepository.save(member);
         return new MemberResponse(savedMember.getMemberId(), savedMember.getEmail(), savedMember.getNickname());
+    }
+
+    public MemberInfoResponse getMyInfo(Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new CustomException(MemberErrorCode.MEMBER_NOT_FOUND));
+
+        return MemberInfoResponse.from(member);
+    }
+
+    public MemberInfoResponse updateMyInfo(Long memberId, MemberUpdateRequest request) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new CustomException(MemberErrorCode.MEMBER_NOT_FOUND));
+
+        if (memberRepository.existsByNicknameAndMemberIdNot(request.nickname(), memberId)) {
+            throw new CustomException(MemberErrorCode.NICKNAME_ALREADY_EXIST);
+        }
+
+        member.updateNickname(request.nickname());
+        memberRepository.save(member);
+
+        return MemberInfoResponse.from(member);
     }
 }
