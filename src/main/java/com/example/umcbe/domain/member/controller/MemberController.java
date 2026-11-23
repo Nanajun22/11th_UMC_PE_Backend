@@ -1,5 +1,6 @@
 package com.example.umcbe.domain.member.controller;
 
+import com.example.umcbe.domain.member.controller.docs.MemberControllerDocs;
 import com.example.umcbe.domain.member.dto.*;
 import com.example.umcbe.domain.member.service.MemberService;
 import com.example.umcbe.global.code.SuccessCode;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
-public class MemberController {
+public class MemberController implements MemberControllerDocs {
 
     private final MemberService memberService;
 
