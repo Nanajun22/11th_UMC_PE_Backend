@@ -1,6 +1,7 @@
 package com.example.umcbe.domain.auth.controller;
 
 
+import com.example.umcbe.domain.auth.controller.docs.AuthControllerDocs;
 import com.example.umcbe.domain.auth.dto.LoginRequest;
 import com.example.umcbe.domain.auth.dto.LoginResponse;
 import com.example.umcbe.domain.auth.service.AuthService;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-public class AuthController {
+public class AuthController implements AuthControllerDocs {
 
     private final AuthService authService;
 

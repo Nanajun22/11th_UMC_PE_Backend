@@ -1,6 +1,7 @@
 package com.example.umcbe.domain.rating.controller;
 
 
+import com.example.umcbe.domain.rating.controller.docs.RatingControllerDocs;
 import com.example.umcbe.domain.rating.dto.CreateRatingRequest;
 import com.example.umcbe.domain.rating.dto.RatingResponse;
 import com.example.umcbe.domain.rating.dto.UpdateRatingRequest;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class RatingController {
+public class RatingController implements RatingControllerDocs {
     private final RatingService ratingService;
 
     @GetMapping("/members/{memberId}/ratings")

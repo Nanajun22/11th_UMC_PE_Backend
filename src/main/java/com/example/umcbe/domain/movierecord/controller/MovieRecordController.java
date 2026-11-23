@@ -1,5 +1,6 @@
 package com.example.umcbe.domain.movierecord.controller;
 
+import com.example.umcbe.domain.movierecord.controller.docs.MovieRecordControllerDocs;
 import com.example.umcbe.domain.movierecord.dto.CreateMovieRecordRequest;
 import com.example.umcbe.domain.movierecord.dto.MovieRecordResponse;
 import com.example.umcbe.domain.movierecord.service.MovieRecordService;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class MovieRecordController {
+public class MovieRecordController implements MovieRecordControllerDocs {
 
     private final MovieRecordService movieRecordService;
 
